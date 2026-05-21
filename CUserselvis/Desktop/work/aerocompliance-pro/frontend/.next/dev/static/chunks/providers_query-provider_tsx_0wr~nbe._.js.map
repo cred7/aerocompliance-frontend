@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///app/providers/query-provider.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { QueryClient, QueryClientProvider } from \"@tanstack/react-query\";\r\n\r\nconst queryClient = new QueryClient();\r\n\r\nexport function QueryProvider({ children }: { children: React.ReactNode }) {\r\n  return (\r\n    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>\r\n  );\r\n}\r\n"],"names":["queryClient","QueryProvider","children","client"],"mappings":";;;;;AAEA;AAAA;AAFA;;;AAIA,MAAMA,cAAc,IAAI,+LAAW;AAE5B,SAASC,cAAc,EAAEC,QAAQ,EAAiC;IACvE,qBACE,6LAAC,gNAAmB;QAACC,QAAQH;kBAAcE;;;;;;AAE/C;KAJgBD"}}]
+}
