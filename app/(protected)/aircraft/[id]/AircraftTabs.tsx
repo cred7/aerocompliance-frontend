@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 interface AircraftTabsProps {
-  aircraftId: string;
+  aircraftId: string | string[];
 }
 
 export default function AircraftTabs({ aircraftId }: AircraftTabsProps) {
-  const basePath = `/aircraft/${aircraftId}`;
+  const basePath = `/aircraft/${Array.isArray(aircraftId) ? aircraftId[0] : aircraftId}`;
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
