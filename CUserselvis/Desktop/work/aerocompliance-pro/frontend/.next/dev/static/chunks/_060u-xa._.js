@@ -748,7 +748,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$token$2e$ts__$5b$app$
 ;
 ;
 const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
-    baseURL: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_API_URL
+    baseURL: ("TURBOPACK compile-time value", "https://semivolatile-nancey-incongrously.ngrok-free.dev/")
 });
 // -----------------------------
 // REQUEST INTERCEPTOR
@@ -890,8 +890,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$endpoints$2e$ts__$5b$
 ;
 ;
 async function getAuditLogs(params) {
+    const queryParams = {
+        ...params ?? {}
+    };
+    if (params?.aircraftId) {
+        queryParams.aircraft_id = params.aircraftId;
+        delete queryParams.aircraftId;
+    }
     const response = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["api"].get(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$endpoints$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["endpoints"].audits.logs, {
-        params
+        params: queryParams
     });
     return response.data;
 }
@@ -968,7 +975,7 @@ function AuditsPage() {
     const { data, isLoading, isError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$features$2f$audits$2f$hooks$2f$use$2d$audit$2d$logs$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuditLogs"])({
         search: search || undefined,
         action: action || undefined,
-        aircraft: aircraft || undefined
+        aircraftId: aircraft || undefined
     });
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen bg-white text-black",

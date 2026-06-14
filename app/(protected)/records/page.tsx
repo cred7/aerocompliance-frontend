@@ -5,6 +5,25 @@ import { useAllDocuments, useCreateDocument } from "@/hooks/useRecords";
 import { Document } from "@/types";
 import { useState, type FormEvent } from "react";
 
+const DOCUMENT_TYPE_OPTIONS = [
+  { value: "", label: "Select record type" },
+  { value: "CRS", label: "Certificate of Release to Service" },
+  { value: "WORK_ORDER", label: "Work Order" },
+  { value: "INSPECTION", label: "Inspection Report" },
+  { value: "AD_EVIDENCE", label: "AD Compliance Evidence" },
+  { value: "MEL_EVIDENCE", label: "MEL Evidence" },
+  { value: "AMP_EVIDENCE", label: "AMP Evidence" },
+];
+
+const DOCUMENT_TYPE_LABELS: Record<string, string> = {
+  CRS: "Certificate of Release to Service",
+  WORK_ORDER: "Work Order",
+  INSPECTION: "Inspection Report",
+  AD_EVIDENCE: "AD Compliance Evidence",
+  MEL_EVIDENCE: "MEL Evidence",
+  AMP_EVIDENCE: "AMP Evidence",
+};
+
 export default function RecordsPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -82,17 +101,26 @@ export default function RecordsPage() {
                   <label className="block text-sm font-medium text-black">
                     Type
                   </label>
-                  <input
+                  <select
                     value={typeValue}
                     onChange={(event) => setTypeValue(event.target.value)}
+                    required
                     className="mt-2 w-full border border-gray-300 bg-white px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                  />
+                  >
+                    {DOCUMENT_TYPE_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-black">
                     Aircraft ID
                   </label>
                   <input
+                    type="number"
+                    min="1"
                     value={aircraftId}
                     onChange={(event) => setAircraftId(event.target.value)}
                     className="mt-2 w-full border border-gray-300 bg-white px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-black"
@@ -144,7 +172,9 @@ export default function RecordsPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-gray-500">{record.type}</p>
+                        <p className="text-sm text-gray-500">
+                          {DOCUMENT_TYPE_LABELS[record.type] ?? record.type}
+                        </p>
                         <p className="text-xs text-gray-500">
                           Uploaded:{" "}
                           {new Date(record.uploaded_at).toLocaleDateString()}

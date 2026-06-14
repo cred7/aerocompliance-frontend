@@ -154,10 +154,10 @@ export default function AircraftAmpPage() {
           </label>
           <button
             type="submit"
-            disabled={createTask.isLoading}
+            disabled={createTask.isPending}
             className="inline-flex items-center justify-center rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
           >
-            {createTask.isLoading ? "Saving..." : "Create AMP Task"}
+            {createTask.isPending ? "Saving..." : "Create AMP Task"}
           </button>
         </form>
       </div>

@@ -5,7 +5,7 @@ import { AuditLogResponse } from "../types/audit.types";
 
 interface GetAuditLogsParams {
   search?: string;
-  aircraft?: string;
+  aircraftId?: string;
   action?: string;
   page?: number;
 }
@@ -13,8 +13,17 @@ interface GetAuditLogsParams {
 export async function getAuditLogs(
   params?: GetAuditLogsParams,
 ): Promise<AuditLogResponse> {
+  const queryParams: Record<string, string | number> = {
+    ...(params ?? {}),
+  };
+
+  if (params?.aircraftId) {
+    queryParams.aircraft_id = params.aircraftId;
+    delete queryParams.aircraftId;
+  }
+
   const response = await api.get<AuditLogResponse>(endpoints.audits.logs, {
-    params,
+    params: queryParams,
   });
 
   return response.data;

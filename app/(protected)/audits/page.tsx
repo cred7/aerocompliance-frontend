@@ -17,7 +17,7 @@ export default function AuditsPage() {
   const { data, isLoading, isError } = useAuditLogs({
     search: search || undefined,
     action: action || undefined,
-    aircraft: aircraft || undefined,
+    aircraftId: aircraft || undefined,
   });
 
   return (

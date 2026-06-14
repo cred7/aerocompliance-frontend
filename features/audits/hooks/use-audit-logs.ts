@@ -6,7 +6,7 @@ import { getAuditLogs } from "../api/get-audit-logs";
 
 interface UseAuditLogsParams {
   search?: string;
-  aircraft?: string;
+  aircraftId?: string;
   action?: string;
   page?: number;
 }

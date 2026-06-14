@@ -9,10 +9,12 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
+chunks
+media
 # testing
 /coverage
-
+CUserselvis
+Desktopworkaerocompliance-profrontend
 # next.js
 /.next/
 /out/

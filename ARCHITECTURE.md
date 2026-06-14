@@ -22,6 +22,7 @@ Modern Next.js 16.2.6 application for aviation compliance management. Features J
 5. Protected routes redirect to login if token missing
 
 ### Token Management
+
 - `getToken()` - Retrieve from localStorage
 - `setToken(token)` - Store in localStorage
 - `clearToken()` - Remove from localStorage
@@ -29,6 +30,7 @@ Modern Next.js 16.2.6 application for aviation compliance management. Features J
 ## Architecture
 
 ### Pages (App Router)
+
 ```
 /
   └─ login/
@@ -79,21 +81,23 @@ export function useCreateResource() {
 
 ### Hooks Overview
 
-| Hook | Location | Purpose | Cache Key | Refetch |
-|------|----------|---------|-----------|---------|
-| useAircraftList | useAircraft.ts | List all aircraft | ["aircraft"] | - |
-| useAircraftDetail | useAircraft.ts | Single aircraft with all nested data | ["aircraft", id] | - |
-| useMELItems | useMEL.ts | MEL items (global/by aircraft) | ["mel-items"] | - |
-| useFleetDashboard | useDashboard.ts | Fleet statistics | ["fleet-dashboard"] | 30s |
-| useAircraftDashboard | useDashboard.ts | Aircraft dashboard | ["aircraft-dashboard"] | 30s |
-| useADs | useAD.ts | List ADs | ["ads"] | - |
-| useADCompliances | useAD.ts | AD compliance by aircraft | ["ad-compliances"] | - |
-| useMaintenanceTasks | useAMP.ts | AMP tasks | ["maintenance-tasks"] | - |
-| useComplianceSnapshots | useCompliance.ts | Compliance status | ["compliance-snapshots"] | - |
-| useNotifications | useNotifications.ts | Notifications | ["notifications"] | 30s |
-| usePendingNotifications | useNotifications.ts | Pending only | ["pending-notifications"] | 30s |
-| useAuditLogs | useAuditLogs.ts | Audit trail | ["audit-logs"] | - |
-| useDocuments | useDocuments.ts | Documents | ["documents"] | - |
+| Hook                    | Location            | Purpose                              | Cache Key                 | Refetch |
+| ----------------------- | ------------------- | ------------------------------------ | ------------------------- | ------- |
+| useAircraftList         | useAircraft.ts      | List all aircraft                    | ["aircraft"]              | -       |
+| useAircraftDetail       | useAircraft.ts      | Single aircraft with all nested data | ["aircraft", id]          | -       |
+| useMELItems             | useMEL.ts           | MEL items (global/by aircraft)       | ["mel-items"]             | -       |
+| useFleetDashboard       | useDashboard.ts     | Fleet statistics                     | ["fleet-dashboard"]       | 30s     |
+| useAircraftDashboard    | useDashboard.ts     | Aircraft dashboard                   | ["aircraft-dashboard"]    | 30s     |
+| useADs                  | useAD.ts            | List ADs                             | ["ads"]                   | -       |
+| useADCompliances        | useAD.ts            | AD compliance by aircraft            | ["ad-compliances"]        | -       |
+| useMaintenanceTasks     | useAMP.ts           | AMP tasks                            | ["maintenance-tasks"]     | -       |
+| useComplianceSnapshots  | useCompliance.ts    | Compliance status                    | ["compliance-snapshots"]  | -       |
+| useNotifications        | useNotifications.ts | Notifications                        | ["notifications"]         | 30s     |
+| usePendingNotifications | useNotifications.ts | Pending only                         | ["pending-notifications"] | 30s     |
+| useAuditLogs            | useAuditLogs.ts     | Audit trail                          | ["audit-logs"]            | -       |
+| useDocuments            | useDocuments.ts     | Documents                            | ["documents"]             | -       |
+
+> Audit filters must use backend query params. The frontend uses `aircraft_id` when filtering audit logs by aircraft.
 
 ### Type Definitions (`types/index.ts`)
 
@@ -114,16 +118,19 @@ Core interfaces matching backend serializers:
 ### Component Library
 
 #### UI Components (`components/ui/`)
+
 - **SkeletonLoader** - Generic animated skeleton
 - **SkeletonCard** - Card skeleton
 - **SkeletonTable** - Table skeleton
 - **SkeletonDetailPage** - Multi-section skeleton
 
 #### Layout (`components/layout/`)
+
 - **Header** - Black background, navigation links, logout button
   - Links to: Dashboard, Aircraft, MEL, AD, AMP, Compliance, Notifications, Audit Trail
 
 #### Utility Components (inline in pages)
+
 - **InfoCard** - Display label + value pairs
 - **StatusBadge** - Color-coded status (AIRWORTHY/RESTRICTED/UNFIT)
 - **SummaryCard** - Large stat display
@@ -131,20 +138,23 @@ Core interfaces matching backend serializers:
 ### Design System
 
 #### Colors
+
 - **Black**: #000000 (text, header background)
 - **Gray**: #808080 (borders), #404040 (darker), #F5F5F5 (light)
 - **White**: #ffffff (backgrounds)
 
 #### Components
+
 - No border-radius on any element (enforced by `globals.css`)
 - Borders: 1px solid #D1D5DB (gray-300)
 - Spacing: 4px grid (Tailwind default)
-- Tables: 
+- Tables:
   - Header: bg-gray-100
   - Rows: hover:bg-gray-50
   - Borders: bottom only between rows
 
 #### Status Colors
+
 - **AIRWORTHY**: Green (bg-green-100, text-green-900)
 - **RESTRICTED**: Yellow (bg-yellow-100, text-yellow-900)
 - **UNFIT**: Red (bg-red-100, text-red-900)
@@ -156,12 +166,12 @@ Core interfaces matching backend serializers:
 Organized by domain with full nested routes:
 
 ```typescript
-endpoints.aircraft.detail(id)              // /api/aircraft/aircraft/{id}/
-endpoints.aircraft.melItems(id)            // /api/aircraft/aircraft/{id}/mel_items/
-endpoints.aircraft.adCompliances(id)       // /api/aircraft/aircraft/{id}/ad_compliances/
-endpoints.mel.byAircraft(aircraftId)       // /api/mel/mel/by_aircraft/?aircraft_id=
-endpoints.ad.compliances                   // /api/ad/compliances/
-endpoints.compliance.unfitAircraft()       // /api/compliance/snapshots/unfit_aircraft/
+endpoints.aircraft.detail(id); // /api/aircraft/aircraft/{id}/
+endpoints.aircraft.melItems(id); // /api/aircraft/aircraft/{id}/mel_items/
+endpoints.aircraft.adCompliances(id); // /api/aircraft/aircraft/{id}/ad_compliances/
+endpoints.mel.byAircraft(aircraftId); // /api/mel/mel/by_aircraft/?aircraft_id=
+endpoints.ad.compliances; // /api/ad/compliances/
+endpoints.compliance.unfitAircraft(); // /api/compliance/snapshots/unfit_aircraft/
 // ... more endpoints
 ```
 
@@ -186,7 +196,9 @@ await api.delete(endpoints.resource.detail(id));
 ```
 
 ### Headers
+
 All requests automatically include:
+
 ```
 Authorization: Bearer {token}
 Content-Type: application/json
@@ -272,6 +284,7 @@ npm run lint
 ## Error Handling
 
 Currently basic (logs to console). Enhancement areas:
+
 1. Error boundaries for entire page sections
 2. Toast notifications for operation results
 3. Retry logic for failed requests
