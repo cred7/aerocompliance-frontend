@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
 import { endpoints } from "@/lib/endpoints";
-import { Document } from "@/types";
+import { Document, PaginatedResponse } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useAircraftDocuments(aircraftId: number) {
