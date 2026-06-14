@@ -61,10 +61,10 @@ export default function NotificationsPage() {
             <button
               type="button"
               onClick={handleRunEngine}
-              disabled={runEngine.isLoading}
+              disabled={runEngine.isPending}
               className="mt-3 inline-flex items-center justify-center rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
             >
-              {runEngine.isLoading ? "Starting..." : "Start Notifications"}
+              {runEngine.isPending ? "Starting..." : "Start Notifications"}
             </button>
             {statusMessage && (
               <p className="mt-3 text-sm text-gray-600">{statusMessage}</p>

@@ -292,10 +292,10 @@ export default function NewAircraftPage() {
 
               <button
                 type="submit"
-                disabled={createAircraft.isLoading}
+                disabled={createAircraft.isPending}
                 className="inline-flex items-center justify-center rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
               >
-                {createAircraft.isLoading ? "Saving..." : "Save Aircraft"}
+                {createAircraft.isPending ? "Saving..." : "Save Aircraft"}
               </button>
             </form>
           </section>
@@ -344,10 +344,10 @@ export default function NewAircraftPage() {
                 </label>
                 <button
                   type="submit"
-                  disabled={createAircraftType.isLoading}
+                  disabled={createAircraftType.isPending}
                   className="inline-flex items-center justify-center rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
                 >
-                  {createAircraftType.isLoading ? "Saving..." : "Create Type"}
+                  {createAircraftType.isPending ? "Saving..." : "Create Type"}
                 </button>
               </form>
             </section>
@@ -396,10 +396,10 @@ export default function NewAircraftPage() {
                 </label>
                 <button
                   type="submit"
-                  disabled={createOperator.isLoading}
+                  disabled={createOperator.isPending}
                   className="inline-flex items-center justify-center rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
                 >
-                  {createOperator.isLoading ? "Saving..." : "Create Operator"}
+                  {createOperator.isPending ? "Saving..." : "Create Operator"}
                 </button>
               </form>
             </section>

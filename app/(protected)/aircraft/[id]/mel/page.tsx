@@ -132,10 +132,10 @@ export default function AircraftMelPage() {
             <div className="flex items-end">
               <button
                 type="submit"
-                disabled={createMel.isLoading}
+                disabled={createMel.isPending}
                 className="w-full rounded bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-900 disabled:cursor-not-allowed disabled:bg-gray-400"
               >
-                {createMel.isLoading ? "Saving..." : "Add MEL Item"}
+                {createMel.isPending ? "Saving..." : "Add MEL Item"}
               </button>
             </div>
           </div>
