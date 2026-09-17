@@ -35,6 +35,8 @@ export default function AircraftMelPage() {
     event.preventDefault();
     setMessage(null);
 
+    console.log("Submitting MEL item:", form, "for aircraft:", aircraftId);
+
     createMel.mutate(
       {
         aircraft: aircraftId,
@@ -43,6 +45,7 @@ export default function AircraftMelPage() {
         category: form.category,
         status: form.status,
         allowed_duration_hours: Number(form.allowed_duration_hours) || 0,
+        remaining_hours: Number(form.allowed_duration_hours) || 0,
       },
       {
         onSuccess: () => {
